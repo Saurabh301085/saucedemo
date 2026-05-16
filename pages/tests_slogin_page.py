@@ -8,6 +8,7 @@ class test_login_page1:
     username_input = (By.ID, "user-name")
     password_input = (By.ID, "password")
     button = (By.XPATH, "//input[@type='submit']")
+    error_msg = (By.XPATH, "//h3[@data-test='error']")
 
     def __init__(self, driver):
         self.driver = driver
@@ -28,3 +29,8 @@ class test_login_page1:
     def is_product_page_loaded(self):
         return self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "title"))
                                )
+
+    def get_error_message(self):
+        return self.wait.until(
+            EC.visibility_of_element_located(self.error_message)
+        ).text
